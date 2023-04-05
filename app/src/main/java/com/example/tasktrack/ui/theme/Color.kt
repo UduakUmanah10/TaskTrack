@@ -1,8 +1,18 @@
-package com.example.tasktrack.ui.theme
+@file: Suppress("MagicNumber")
 
+package com.example.tasktrack.ui.theme
+import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val backgroundColor = Color(0xFF2b2b2a)
+val cardBackground = Color(0xFFe6f5fb)
+val fontColor = Color(0xFFe8e9e9)
+
+val lightColorPallet = lightColors(
+    onPrimary = Color.White,
+    background = backgroundColor,
+    onSurface = backgroundColor,
+    surface = fontColor,
+    secondary = cardBackground
+
+)
