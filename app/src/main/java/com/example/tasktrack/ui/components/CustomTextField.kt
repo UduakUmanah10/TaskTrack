@@ -3,9 +3,8 @@ package com.example.tasktrack.ui.components
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.ExposedDropdownMenuDefaults.outlinedTextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -29,7 +28,14 @@ fun TrackAppTextField(
 
 ) {
     OutlinedTextField(
-
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = MaterialTheme.colors.secondary,
+            unfocusedBorderColor = MaterialTheme.colors.secondary,
+            textColor = MaterialTheme.colors.secondary,
+            focusedLabelColor = MaterialTheme.colors.secondary,
+            unfocusedLabelColor = MaterialTheme.colors.secondary,
+            cursorColor = MaterialTheme.colors.secondary
+        ),
         value = text.toUpperCase(Locale.current),
         onValueChange = onTextChanged,
         label = { Text(text = labelText.toUpperCase(Locale.current)) },
@@ -77,12 +83,10 @@ private fun FilledCustomTextField() {
 @Suppress("UnusedPrivateMember ")
 private fun EmptyFilledCustomTextField() {
     TaskTrackTheme {
-        Surface() {
-            TrackAppTextField(
-                text = "",
-                onTextChanged = {},
-                labelText = "user Name"
-            )
-        }
+        TrackAppTextField(
+            text = "",
+            onTextChanged = {},
+            labelText = "user Name"
+        )
     }
 }
