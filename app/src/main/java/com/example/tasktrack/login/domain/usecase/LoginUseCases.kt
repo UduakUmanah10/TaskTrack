@@ -1,9 +1,11 @@
 
 import com.example.tasktrack.login.domain.model.LoginResults
 
+@Suppress("UnusedPrivateMember")
 @JvmInline
 value class Email(private val email: String)
 
+@Suppress("UnusedPrivateMember")
 @JvmInline
 value class Password(private val email: String)
 
