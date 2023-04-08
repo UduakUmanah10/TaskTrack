@@ -1,4 +1,4 @@
-package com.example.tasktrack.ui.loginPage
+package com.example.tasktrack.login
 
 /**
  * This class Defines the current and possible state of the log in screem
@@ -10,5 +10,6 @@ package com.example.tasktrack.ui.loginPage
 
 data class LoginViewState(
     val userName: String,
-    val password: String
+    val password: String,
+    val progressAnimation: Boolean = false
 )

@@ -1,4 +1,4 @@
-package com.example.tasktrack.ui.loginPage
+package com.example.tasktrack.login
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
