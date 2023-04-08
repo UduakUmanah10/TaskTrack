@@ -1,4 +1,3 @@
-package com.example.tasktrack.login.domain
 
 import com.example.tasktrack.login.domain.model.LoginResults
 

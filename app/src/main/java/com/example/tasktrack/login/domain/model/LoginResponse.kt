@@ -7,9 +7,7 @@ sealed class LoginResults {
      *
      */
 
-    data class Success(
-        val authToken: String
-    ) : LoginResults()
+    object  Success : LoginResults()
 
     object InvalidCredentials : LoginResults()
 
