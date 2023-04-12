@@ -10,8 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.tasktrack.login.LogInViewState
 import com.example.tasktrack.login.LoginPage
-import com.example.tasktrack.login.LoginViewState
 import com.example.tasktrack.ui.theme.TaskTrackTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,9 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
-                    val viewState = LoginViewState("", "")
-                    LoginPage(viewState = viewState,{},{},{},{})
+                    LoginPage(viewState = LogInViewState.InitialLoginState, {}, {}, {}, {})
                 }
             }
         }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TaskTrack</string>
-    <string name="sign_up">Sign ip</string>
-    <string name="Log_in">Log_In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="Log_in">Log In</string>
     <string name="Email">Email</string>
     <string name="Password">Password</string>
 </resources>

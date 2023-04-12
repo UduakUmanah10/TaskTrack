@@ -1,5 +1,7 @@
 package com.example.tasktrack.login
 
+import com.example.tasktrack.login.domain.Credentials
+
 /**
  * This class Defines the current and possible state of the log in screem
  * @param[userName] the current text entered into the ui text field
@@ -8,8 +10,40 @@ package com.example.tasktrack.login
  *
  */
 
-data class LoginViewState(
-    val userName: String,
-    val password: String,
-    val progressAnimation: Boolean = false
-)
+sealed class LogInViewState(
+    open val Credentials: Credentials,
+    open val buttonsEnabled: Boolean = true
+) {
+    object InitialLoginState : LogInViewState(
+        Credentials = Credentials()
+    )
+
+    data class Active(
+        override val Credentials: Credentials
+    ) : LogInViewState(
+        Credentials = Credentials
+    )
+
+    data class Submitting(
+        override val Credentials: Credentials
+    ) : LogInViewState(
+        Credentials = Credentials,
+        buttonsEnabled = false
+    )
+
+    data class SubmissionError(
+        override val Credentials: Credentials,
+        val errorMessage: String
+    ) : LogInViewState(
+        Credentials = Credentials
+    )
+
+    data class InputError(
+        override val Credentials: Credentials,
+        val emailInputErrorMessage: String,
+        val passwordInputErrorMessage: String?
+    ) : LogInViewState(
+        Credentials = Credentials
+    )
+}
+

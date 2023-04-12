@@ -3,11 +3,10 @@ package com.example.tasktrack.login.domain.model
 sealed class LoginResults {
     /**
      * this is the information we expect to be returned from any successful result
-     * @param [authToken] this is a unique token that will allow authentication or requests
      *
      */
 
-    object  Success : LoginResults()
+    object Success : LoginResults()
 
     object InvalidCredentials : LoginResults()
 
