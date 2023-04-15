@@ -1,14 +1,19 @@
 package com.example.tasktrack.login
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,12 +62,12 @@ fun LoginPage(
                 onLoginClicked,
                 onSignupClicked
             )
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .wrapContentSize()
-                    .align(Alignment.Center),
-                color = MaterialTheme.colors.secondary
-            )
+            // CircularProgressIndicator(
+            // modifier = Modifier
+            //   .wrapContentSize()
+            //     .align(Alignment.Center),
+            // color = MaterialTheme.colors.secondary
+            // )
         }
     }
 }
@@ -83,10 +88,15 @@ private fun LogoInputColum(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.weight(1F))
-
         LoginAnimation()
-
         Spacer(modifier = Modifier.weight(1F))
+        CircularProgressIndicator(
+            modifier = Modifier
+                .wrapContentSize()
+                .padding(top = 10.dp, bottom = 10.dp)
+                .align(Alignment.CenterHorizontally),
+            color = MaterialTheme.colors.secondary
+        )
 
         Email(
             text = viewState.Credentials.email.email,

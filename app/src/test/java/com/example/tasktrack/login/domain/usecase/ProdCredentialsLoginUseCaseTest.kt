@@ -54,7 +54,7 @@ class ProdCredentialsLoginUseCaseTest {
             mockLoginWithCredentials(credentials, mockresult)
         }
 
-        val useCase = ProdCredentialsLoginUseCase(loginRepository.mock,tokenRepository.mock)
+        val useCase = ProdCredentialsLoginUseCase(loginRepository.mock, tokenRepository.mock)
         val useCaseResult = useCase(credentials)
 
         assertThat(useCaseResult).isEqualTo(LoginResults.Failure.Unknown)
@@ -79,8 +79,5 @@ class ProdCredentialsLoginUseCaseTest {
         val useCaseResult = useCase(credentials)
 
         assertThat(useCaseResult).isEqualTo(LoginResults.Failure.InvalidCredentials)
-
     }
-
-
 }
