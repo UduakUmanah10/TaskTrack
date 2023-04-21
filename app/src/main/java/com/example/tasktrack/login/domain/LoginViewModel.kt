@@ -2,9 +2,14 @@ package com.example.tasktrack.login.domain
 
 import CredentialLoginUseCase
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.tasktrack.R
 import com.example.tasktrack.login.LogInViewState
+import com.example.tasktrack.login.domain.model.LoginResults
+import com.example.tasktrack.ui.components.UIText
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val credentialLoginUseCase: CredentialLoginUseCase
@@ -34,6 +39,24 @@ class LoginViewModel(
     }
 
     fun SignInButtonClicked() {
+        val currentCredentials = _viewState.value.Credentials
+        _viewState.value = LogInViewState.Submitting(
+            Credentials = currentCredentials
+        )
+
+        viewModelScope.launch {
+            val LoginResult = credentialLoginUseCase(currentCredentials)
+
+            _viewState.value = when (LoginResult) {
+                is LoginResults.Failure.InvalidCredentials -> {
+                    LogInViewState.SubmissionError(
+                        Credentials = currentCredentials,
+                        errorMessage = UIText.ResourceStringText(R.string.error_invalid_credentials)
+                    )
+                }
+                else -> _viewState.value
+            }
+        }
     }
 }
 
