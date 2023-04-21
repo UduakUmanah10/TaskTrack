@@ -9,7 +9,7 @@ import io.mockk.mockk
 class FakeCredentialsLoginUseCase {
     val mock: CredentialLoginUseCase = mockk()
 
-    fun mockLoginresult(
+    fun mockLoginresultForCredentials(
         credentials: Credentials,
         result: LoginResults
     ) {

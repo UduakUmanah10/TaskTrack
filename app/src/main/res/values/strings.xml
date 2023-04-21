@@ -4,4 +4,5 @@
     <string name="Log_in">Log In</string>
     <string name="Email">Email</string>
     <string name="Password">Password</string>
+    <string name="error_invalid_credentials">email or password is not correct</string>
 </resources>

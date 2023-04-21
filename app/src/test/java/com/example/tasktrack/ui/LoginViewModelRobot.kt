@@ -1,5 +1,6 @@
 package com.example.tasktrack.ui
 
+import app.cash.turbine.test
 import com.example.tasktrack.fake.FakeCredentialsLoginUseCase
 import com.example.tasktrack.login.LogInViewState
 import com.example.tasktrack.login.domain.Credentials
@@ -23,7 +24,7 @@ class LoginViewModelRobot {
         credentials: Credentials,
         result: LoginResults
     ) = apply {
-        fakeCrekentialsLogInUsecase.mockLoginresult(credentials, result)
+        fakeCrekentialsLogInUsecase.mockLoginresultForCredentials(credentials, result)
     }
 
     fun enterEmail(email: String) = apply {
@@ -42,8 +43,21 @@ class LoginViewModelRobot {
         viewModel.SignInButtonClicked()
     }
 
-    fun assertViewState(expectedViewState: LogInViewState) {
+    fun assertViewState(expectedViewState: LogInViewState) = apply {
         val viewmodelState = viewModel.viewState.value
         assertThat(viewmodelState).isEqualTo(expectedViewState)
+    }
+
+    suspend fun assertViewStatesAfterActions(
+        action: LoginViewModelRobot.() -> Unit,
+        viewState: List<LogInViewState>
+    ) = apply {
+        viewModel.viewState.test {
+            action()
+            for (state in viewState) {
+                assertThat(awaitItem()).isEqualTo(state)
+            }
+
+        }
     }
 }

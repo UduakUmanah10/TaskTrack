@@ -1,6 +1,7 @@
 package com.example.tasktrack.login
 
 import com.example.tasktrack.login.domain.Credentials
+import com.example.tasktrack.ui.components.UIText
 
 /**
  * This class Defines the current and possible state of the log in screem
@@ -33,7 +34,7 @@ sealed class LogInViewState(
 
     data class SubmissionError(
         override val Credentials: Credentials,
-        val errorMessage: String
+        val errorMessage: UIText
     ) : LogInViewState(
         Credentials = Credentials
     )

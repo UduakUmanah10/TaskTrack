@@ -1,4 +1,5 @@
 package com.example.tasktrack.login
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -30,6 +32,8 @@ import com.example.tasktrack.login.domain.Credentials
 import com.example.tasktrack.ui.components.LoginAnimation
 import com.example.tasktrack.ui.components.PrimaryButton
 import com.example.tasktrack.ui.components.TrackAppTextField
+import com.example.tasktrack.ui.components.UIText
+import com.example.tasktrack.ui.components.getString
 import com.example.tasktrack.ui.core.VerticalSpacer
 import com.example.tasktrack.ui.theme.TaskTrackTheme
 
@@ -62,12 +66,6 @@ fun LoginPage(
                 onLoginClicked,
                 onSignupClicked
             )
-            // CircularProgressIndicator(
-            // modifier = Modifier
-            //   .wrapContentSize()
-            //     .align(Alignment.Center),
-            // color = MaterialTheme.colors.secondary
-            // )
         }
     }
 }
@@ -129,7 +127,7 @@ private fun LogoInputColum(
         )
         if (viewState is LogInViewState.SubmissionError) {
             Text(
-                text = viewState.errorMessage,
+                text = viewState.errorMessage.getString(LocalContext.current),
                 color = MaterialTheme.colors.error,
                 modifier = Modifier.padding(top = 12.dp)
             )
@@ -233,13 +231,19 @@ class LoginViewStateProvider : PreviewParameterProvider<LogInViewState> {
                 LogInViewState.InitialLoginState,
                 LogInViewState.Active(activeCredentials),
                 LogInViewState.Submitting(activeCredentials),
-                LogInViewState.SubmissionError(activeCredentials, "Something is wrong"),
-                LogInViewState.InputError(
+                LogInViewState.SubmissionError(
                     activeCredentials,
-                    "Please Enter a valid Email",
-                    "please enter a valid password"
+                    UIText.StringText("Something is wrong")
+                ),
+                LogInViewState.InputError(
+                    Credentials = activeCredentials,
+                    emailInputErrorMessage = "please enter email",
+                    passwordInputErrorMessage = ""
+
                 )
 
-            )
+                )
+
+
         }
 }
