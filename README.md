@@ -21,5 +21,10 @@
 | [**Glide**](https://bumptech.github.io/glide/)          | Loading Images                                     |
 | [**Dagger Hilt**](https://developer.android.com/training/dependency-injection/hilt-android/)| Automated Dependency Injection                |
 | [**Room Library**](https://developer.android.com/jetpack/androidx/releases/room)| Data Storage and persistence|
-| [**Turbine**](https://github.com/cashapp/turbine)| Testing Coroutine|
+| [**Turbine**](https://github.com/cashapp/turbine)| Testing Flow|
+| [**LoitteAnimation**](https://airbnb.io/projects/lottie-android/)|Animation library|
+| [**Truth Library**](https://truth.dev/)|Assertion Test|
+| [**Mockk**](https://mockk.io/)|Creating Fake TestTest|
+
+
 
