@@ -23,7 +23,7 @@
 | [**Turbine**](https://github.com/cashapp/turbine)| Testing Flow|
 | [**LoitteAnimation**](https://airbnb.io/projects/lottie-android/)|Animation library|
 | [**Truth Library**](https://truth.dev/)|Assertion Test|
-| [**Mockk**](https://mockk.io/)|Creating Fake TestTest|
+| [**Mockk**](https://mockk.io/)|Creating Fake Entities for TestTest|
 
 
 
