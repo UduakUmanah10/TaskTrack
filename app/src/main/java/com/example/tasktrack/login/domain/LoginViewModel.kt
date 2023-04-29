@@ -40,6 +40,7 @@ class LoginViewModel(
 
     fun SignInButtonClicked() {
         val currentCredentials = _viewState.value.Credentials
+
         _viewState.value = LogInViewState.Submitting(
             Credentials = currentCredentials
         )
@@ -49,6 +50,12 @@ class LoginViewModel(
 
             _viewState.value = when (LoginResult) {
                 is LoginResults.Failure.InvalidCredentials -> {
+                    LogInViewState.SubmissionError(
+                        Credentials = currentCredentials,
+                        errorMessage = UIText.ResourceStringText(R.string.error_invalid_credentials)
+                    )
+                }
+                is LoginResults.Failure.Unknown -> {
                     LogInViewState.SubmissionError(
                         Credentials = currentCredentials,
                         errorMessage = UIText.ResourceStringText(R.string.error_invalid_credentials)

@@ -1,4 +1,4 @@
-package com.example.tasktrack.ui.components
+package com.example.tasktrack.ui.components // ktlint-disable filename
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column

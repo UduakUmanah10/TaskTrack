@@ -8,23 +8,16 @@ import com.example.tasktrack.login.domain.Password
 import com.example.tasktrack.login.domain.model.LoginResults
 import com.example.tasktrack.ui.components.UIText
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
 class LoginViewModelTest {
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     val dispatcher = StandardTestDispatcher()
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val scope = TestScope(dispatcher)
 
     private lateinit var testRobot: LoginViewModelRobot
     private val defaultCredantials = Credentials(
@@ -32,22 +25,8 @@ class LoginViewModelTest {
         Password("Umanah4")
     )
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @Before
-    fun setUp() {
-        Dispatchers.setMain(StandardTestDispatcher())
-        testRobot = LoginViewModelRobot()
-    }
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain()
-    }
-
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun updateCredentials() = scope.runTest {
+    fun updateCredentials() = runTest {
         val testEmail = "testy@mactest.com"
         val testPassword = "12345"
 
@@ -80,12 +59,16 @@ class LoginViewModelTest {
             )
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(dispatcher)
+        testRobot = LoginViewModelRobot()
+    }
+
     @Test
-    fun submitInvalidCredentials() = scope.runTest {
+    fun submitInvalidCredentials() = runTest {
         val testEmail = "testy@mactest.com"
         val testPassword = "12345"
-
         val completedCredentials = Credentials(
             email = Email(testEmail),
             password = Password(testPassword)
@@ -129,5 +112,8 @@ class LoginViewModelTest {
                 )
 
             )
+    }
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 }
