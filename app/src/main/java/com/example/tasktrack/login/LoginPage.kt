@@ -1,5 +1,4 @@
 package com.example.tasktrack.login
-import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -242,8 +241,6 @@ class LoginViewStateProvider : PreviewParameterProvider<LogInViewState> {
 
                 )
 
-                )
-
-
+            )
         }
 }

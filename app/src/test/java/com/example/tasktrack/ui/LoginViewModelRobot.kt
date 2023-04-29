@@ -57,7 +57,7 @@ class LoginViewModelRobot {
             for (state in viewState) {
                 assertThat(awaitItem()).isEqualTo(state)
             }
-
+            cancel()
         }
     }
 }
