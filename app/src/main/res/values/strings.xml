@@ -5,4 +5,7 @@
     <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="error_invalid_credentials">email or password is not correct</string>
+    <string name="err_login_failure"> There was a problem logging in. please check your internet Connection and tr again</string>
+    <string name="error_empty_password">Please Enter Password</string>
+    <string name="error_empty_email">Please Enter Email</string>
 </resources>

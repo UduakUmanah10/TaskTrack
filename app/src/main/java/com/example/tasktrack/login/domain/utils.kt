@@ -1,13 +1,13 @@
 package com.example.tasktrack.login.domain
 @Suppress("UnusedPrivateMember")
 @JvmInline
-value class Email(val email: String)
+value class Email(val value: String)
 
 @Suppress("UnusedPrivateMember")
 @JvmInline
-value class Password(val password: String)
+value class Password(val value: String)
 
 data class Credentials(
-    val email: Email = Email(email = ""),
-    val password: Password = Password(password = "")
+    val email: Email = Email(value = ""),
+    val password: Password = Password(value = "")
 )

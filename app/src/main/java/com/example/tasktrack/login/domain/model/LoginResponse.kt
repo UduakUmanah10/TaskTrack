@@ -8,8 +8,6 @@ sealed class LoginResults {
 
     object Success : LoginResults()
 
-    object InvalidCredentials : LoginResults()
-
     /**
      * this will be returned if there is no account that match the credentials
      */
@@ -18,5 +16,10 @@ sealed class LoginResults {
         object InvalidCredentials : Failure()
 
         object Unknown : Failure()
+
+        data class EmptyCredentials(
+            val emptyEmail: Boolean,
+            val emptyPassword: Boolean
+        ) : Failure()
     }
 }
