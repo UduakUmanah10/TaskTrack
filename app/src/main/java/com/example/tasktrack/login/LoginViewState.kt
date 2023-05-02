@@ -4,7 +4,7 @@ import com.example.tasktrack.login.domain.Credentials
 import com.example.tasktrack.ui.components.UIText
 
 /**
- * This class Defines the current and possible state of the log in screem
+ * This class Defines the current and possible state of the log in screen
  * @param[userName] the current text entered into the ui text field
  * @param[password] the current password entered in the password field
  *
@@ -20,7 +20,9 @@ sealed class LogInViewState(
     )
 
     data class Active(
-        override val Credentials: Credentials
+        override val Credentials: Credentials,
+        val emailInputErrorMessage: UIText? = null,
+        val passwordInputErrorMessage: UIText? = null
     ) : LogInViewState(
         Credentials = Credentials
     )
@@ -39,12 +41,5 @@ sealed class LogInViewState(
         Credentials = Credentials
     )
 
-    data class InputError(
-        override val Credentials: Credentials,
-        val emailInputErrorMessage: String,
-        val passwordInputErrorMessage: String?
-    ) : LogInViewState(
-        Credentials = Credentials
-    )
-}
 
+}

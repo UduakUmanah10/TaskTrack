@@ -15,7 +15,7 @@ class FakeAuthTokenRepository {
         }
     }
 
-    fun verifyNoTokenStored(token: Token) {
+    fun verifyNoTokenStored() {
         coVerify(exactly = 0) {
             mock.storeToken(any())
         }

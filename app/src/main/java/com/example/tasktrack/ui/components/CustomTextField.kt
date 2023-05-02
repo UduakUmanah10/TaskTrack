@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -13,6 +14,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
@@ -56,7 +58,8 @@ fun TrackAppTextField(
             shape = OutlinedTextFieldShape,
             isError = (errorMessage != null),
             leadingIcon = leadingIcon,
-            visualTransformation = visualTransformation
+            visualTransformation = visualTransformation,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
 
 
         )

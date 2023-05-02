@@ -87,18 +87,22 @@ private fun LogoInputColum(
         Spacer(modifier = Modifier.weight(1F))
         LoginAnimation()
         Spacer(modifier = Modifier.weight(1F))
-        CircularProgressIndicator(
-            modifier = Modifier
-                .wrapContentSize()
-                .padding(top = 10.dp, bottom = 10.dp)
-                .align(Alignment.CenterHorizontally),
-            color = MaterialTheme.colors.secondary
-        )
+        if (viewState is LogInViewState.Submitting) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(top = 10.dp, bottom = 10.dp)
+                    .align(Alignment.CenterHorizontally),
+                color = MaterialTheme.colors.secondary
+            )
+        }
 
         Email(
-            text = viewState.Credentials.email.email,
+            text = viewState.Credentials.email.value,
             onEmailTextChanged = onUserNameChanged,
-            errorMessage = (viewState as? LogInViewState.InputError)?.emailInputErrorMessage,
+            errorMessage = (viewState as? LogInViewState.Active)?.emailInputErrorMessage?.getString(
+                LocalContext.current
+            ),
             leadingIcon = {
                 Icon(
                     Icons.Default.Email,
@@ -112,9 +116,11 @@ private fun LogoInputColum(
         VerticalSpacer(height = 12.dp)
 
         Password(
-            viewState.Credentials.password.password,
+            viewState.Credentials.password.value,
             onPasswordTextChanged = onPasswordChanged,
-            errorMessage = (viewState as? LogInViewState.InputError)?.passwordInputErrorMessage,
+            errorMessage = (viewState as? LogInViewState.Active)?.emailInputErrorMessage?.getString(
+                LocalContext.current
+            ),
             leadingIcon = {
                 Icon(
                     Icons.Default.Lock,
@@ -234,10 +240,10 @@ class LoginViewStateProvider : PreviewParameterProvider<LogInViewState> {
                     activeCredentials,
                     UIText.StringText("Something is wrong")
                 ),
-                LogInViewState.InputError(
+                LogInViewState.Active(
                     Credentials = activeCredentials,
-                    emailInputErrorMessage = "please enter email",
-                    passwordInputErrorMessage = ""
+                    emailInputErrorMessage = UIText.StringText("please enter email"),
+                    passwordInputErrorMessage = UIText.StringText("password")
 
                 )
 

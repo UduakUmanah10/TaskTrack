@@ -4,7 +4,6 @@ import app.cash.turbine.test
 import com.example.tasktrack.fake.FakeCredentialsLoginUseCase
 import com.example.tasktrack.login.LogInViewState
 import com.example.tasktrack.login.domain.Credentials
-import com.example.tasktrack.login.domain.LoginViewModel
 import com.example.tasktrack.login.domain.model.LoginResults
 import com.google.common.truth.Truth.assertThat
 
@@ -54,6 +53,7 @@ class LoginViewModelRobot {
     ) = apply {
         viewModel.viewState.test {
             action()
+
             for (state in viewState) {
                 assertThat(awaitItem()).isEqualTo(state)
             }

@@ -2,6 +2,9 @@ package com.example.tasktrack.ui.components
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+
 /*
 * this is a sealed class that contains all the possible ways text can be displayed on the UI
 * */
@@ -24,3 +27,10 @@ fun UIText.getString(context: Context): String {
         is UIText.ResourceStringText -> context.getString(this.value)
     }
 }
+
+@Composable
+fun UIText.getString(): String {
+    return  this.getString(LocalContext.current)
+
+}
+
