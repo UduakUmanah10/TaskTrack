@@ -1,5 +1,7 @@
 package com.example.tasktrack.login.domain
 
+import com.example.tasktrack.login.domain.model.Token
+
 /**
  * this is a response from any request
  * to login to an external service
@@ -8,5 +10,5 @@ package com.example.tasktrack.login.domain
  * @property authToken
  */
 
-data class LoginResponse( val authToken: String)
+data class LoginResponse( val authToken: Token)
 

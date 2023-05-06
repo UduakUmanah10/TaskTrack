@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import com.example.tasktrack.login.LoginPage
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel) {
+fun LoginScreen(viewModel: LoginViewModel ) {
     val viewState = viewModel.viewState.collectAsState()
 
     LoginPage(

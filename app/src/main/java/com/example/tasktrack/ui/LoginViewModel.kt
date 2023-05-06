@@ -1,6 +1,6 @@
 package com.example.tasktrack.ui
 
-import CredentialLoginUseCase
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tasktrack.R
@@ -9,12 +9,16 @@ import com.example.tasktrack.login.domain.Credentials
 import com.example.tasktrack.login.domain.Email
 import com.example.tasktrack.login.domain.Password
 import com.example.tasktrack.login.domain.model.LoginResults
+import com.example.tasktrack.login.domain.usecase.CredentialLoginUseCase
 import com.example.tasktrack.ui.components.UIText
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(
+@HiltViewModel
+class LoginViewModel @Inject constructor(
     private val credentialLoginUseCase: CredentialLoginUseCase
 ) : ViewModel() {
 
