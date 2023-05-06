@@ -1,5 +1,7 @@
+package com.example.tasktrack.login.domain.usecase
 import com.example.tasktrack.login.domain.Credentials
 import com.example.tasktrack.login.domain.model.LoginResults
+
 interface CredentialLoginUseCase {
     /**
      * This function consumes a :
@@ -11,3 +13,4 @@ interface CredentialLoginUseCase {
         credentials: Credentials
     ): LoginResults
 }
+

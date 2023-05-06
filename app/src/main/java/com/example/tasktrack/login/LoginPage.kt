@@ -98,7 +98,7 @@ private fun LogoInputColum(
         }
 
         Email(
-            text = viewState.Credentials.email.value,
+            text = viewState.Credentials.email.emailValue,
             onEmailTextChanged = onUserNameChanged,
             errorMessage = (viewState as? LogInViewState.Active)?.emailInputErrorMessage?.getString(
                 LocalContext.current
@@ -116,7 +116,7 @@ private fun LogoInputColum(
         VerticalSpacer(height = 12.dp)
 
         Password(
-            viewState.Credentials.password.value,
+            viewState.Credentials.password.PasswordValue,
             onPasswordTextChanged = onPasswordChanged,
             errorMessage = (viewState as? LogInViewState.Active)?.emailInputErrorMessage?.getString(
                 LocalContext.current

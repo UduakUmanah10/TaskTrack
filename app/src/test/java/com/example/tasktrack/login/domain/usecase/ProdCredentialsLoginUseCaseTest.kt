@@ -8,6 +8,7 @@ import com.example.tasktrack.login.domain.LoginResponse
 import com.example.tasktrack.login.domain.Password
 import com.example.tasktrack.login.domain.model.InvalidCredentialException
 import com.example.tasktrack.login.domain.model.LoginResults
+import com.example.tasktrack.login.domain.model.Token
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -25,7 +26,7 @@ class ProdCredentialsLoginUseCaseTest {
 
         val tokenRepository = FakeAuthTokenRepository()
 
-        val response = LoginResponse(authToken = "Success")
+        val response = LoginResponse(Token("Success"))
         val mockresult = CustomResult.Success(response)
 
         val loginRepository = FakeLoginRepository().apply {
