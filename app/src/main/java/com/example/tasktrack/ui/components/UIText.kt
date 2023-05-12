@@ -30,7 +30,5 @@ fun UIText.getString(context: Context): String {
 
 @Composable
 fun UIText.getString(): String {
-    return  this.getString(LocalContext.current)
-
+    return this.getString(LocalContext.current)
 }
-

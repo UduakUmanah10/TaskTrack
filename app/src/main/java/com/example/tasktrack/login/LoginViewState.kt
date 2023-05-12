@@ -40,6 +40,8 @@ sealed class LogInViewState(
     ) : LogInViewState(
         Credentials = Credentials
     )
-
-
+    object LoginSuccess : LogInViewState(
+        Credentials(),
+        buttonsEnabled = false
+    )
 }

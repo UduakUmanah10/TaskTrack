@@ -12,9 +12,10 @@ import com.example.tasktrack.R
 
 @Composable
 fun LoginAnimation() {
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.login2))
     val isPlaying by remember { mutableStateOf(false) }
     val speed by remember { mutableStateOf(1f) }
-    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.login2))
+
     val progress by animateLottieCompositionAsState(
         composition = composition,
         iterations = LottieConstants.IterateForever,

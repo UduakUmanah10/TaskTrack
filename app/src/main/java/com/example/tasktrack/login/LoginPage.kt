@@ -118,7 +118,7 @@ private fun LogoInputColum(
         Password(
             viewState.Credentials.password.PasswordValue,
             onPasswordTextChanged = onPasswordChanged,
-            errorMessage = (viewState as? LogInViewState.Active)?.emailInputErrorMessage?.getString(
+            errorMessage = (viewState as? LogInViewState.Active)?.passwordInputErrorMessage?.getString(
                 LocalContext.current
             ),
             leadingIcon = {
