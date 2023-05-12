@@ -37,10 +37,10 @@ fun TrackAppTextField(
     leadingIcon: (@Composable () -> Unit)? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None
 
-
 ) {
     Column {
         OutlinedTextField(
+            singleLine = true,
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = MaterialTheme.colors.secondary,
                 unfocusedBorderColor = MaterialTheme.colors.secondary,
@@ -49,7 +49,7 @@ fun TrackAppTextField(
                 unfocusedLabelColor = MaterialTheme.colors.secondary,
                 cursorColor = MaterialTheme.colors.secondary
             ),
-            value = text.toUpperCase(Locale.current),
+            value = text ,//.toUpperCase(Locale.current),
             onValueChange = onTextChanged,
             label = { Text(text = labelText.toUpperCase(Locale.current)) },
             modifier = modifier
@@ -60,7 +60,6 @@ fun TrackAppTextField(
             leadingIcon = leadingIcon,
             visualTransformation = visualTransformation,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-
 
         )
 

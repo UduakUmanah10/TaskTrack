@@ -4,6 +4,7 @@ import com.example.tasktrack.login.domain.Credentials
 import com.example.tasktrack.login.domain.model.LoginResults
 import com.example.tasktrack.login.domain.repository.LoginRepository
 import com.example.tasktrack.login.domain.repository.TokenRepository
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 /**
@@ -27,6 +28,7 @@ class ProdCredentialsLoginUseCase @Inject constructor(
 
             )
         }
+        delay(2000)
 
         val repositoryResult = loginRepository.Login(credentials)
 
@@ -40,7 +42,7 @@ class ProdCredentialsLoginUseCase @Inject constructor(
 
             // }
 
-            else -> { return LoginResults.Failure.InvalidCredentials }
+            else -> { return LoginResults.Success }
         }
     }
 

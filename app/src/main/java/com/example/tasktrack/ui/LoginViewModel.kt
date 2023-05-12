@@ -1,6 +1,5 @@
 package com.example.tasktrack.ui
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tasktrack.R
@@ -12,6 +11,7 @@ import com.example.tasktrack.login.domain.model.LoginResults
 import com.example.tasktrack.login.domain.usecase.CredentialLoginUseCase
 import com.example.tasktrack.ui.components.UIText
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -27,10 +27,11 @@ class LoginViewModel @Inject constructor(
 
     val viewState: StateFlow<LogInViewState> = _viewState
 
+    val completedState = Channel<Unit>()
     fun emailChange(email: String) {
         val currentCredentials = _viewState.value.Credentials
         val currentPasswordErrorMessage =
-            (_viewState.value as? LogInViewState.Active)?.emailInputErrorMessage
+            (_viewState.value as? LogInViewState.Active)?.passwordInputErrorMessage
 
         _viewState.value = LogInViewState.Active(
             Credentials = currentCredentials.withUpdatedEmail(email),
@@ -43,7 +44,7 @@ class LoginViewModel @Inject constructor(
         val currentCredentials = _viewState.value.Credentials
 
         val currentPasswordErrorMessage =
-            (_viewState.value as? LogInViewState.Active)?.passwordInputErrorMessage
+            (_viewState.value as? LogInViewState.Active)?.emailInputErrorMessage
 
         _viewState.value = LogInViewState.Active(
             Credentials = currentCredentials.withUpdatedPassword(password),
@@ -91,14 +92,17 @@ class LoginViewModel @Inject constructor(
 
                     )
                 }
+                is LoginResults.Success -> {
+                    _viewState.value
+                    viewModelScope.launch {
+                        completedState.send(Unit)
+                    }
+                    LogInViewState.LoginSuccess
+                }
                 else -> _viewState.value
             }
         }
     }
-
-
-
-
 
     private fun Credentials.withUpdatedEmail(email: String): Credentials {
         return this.copy(
