@@ -4,9 +4,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -15,11 +18,17 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +44,8 @@ import com.example.tasktrack.ui.components.UIText
 import com.example.tasktrack.ui.components.getString
 import com.example.tasktrack.ui.core.VerticalSpacer
 import com.example.tasktrack.ui.theme.TaskTrackTheme
+import com.google.android.material.R.drawable.design_ic_visibility
+import com.google.android.material.R.drawable.design_ic_visibility_off
 
 /**
  * This is a composable that maintains the the entire login Screen.
@@ -80,7 +91,8 @@ private fun LogoInputColum(
     Column(
         modifier = Modifier
             .padding(dimensionResource(id = R.dimen.screen_padding))
-            .fillMaxSize(),
+            .fillMaxSize()
+            .navigationBarsPadding(),
 
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -98,6 +110,7 @@ private fun LogoInputColum(
         }
 
         Email(
+            enabled = viewState.buttonsEnabled,
             text = viewState.Credentials.email.emailValue,
             onEmailTextChanged = onUserNameChanged,
             errorMessage = (viewState as? LogInViewState.Active)?.emailInputErrorMessage?.getString(
@@ -116,7 +129,8 @@ private fun LogoInputColum(
         VerticalSpacer(height = 12.dp)
 
         Password(
-            viewState.Credentials.password.PasswordValue,
+            text = viewState.Credentials.password.PasswordValue,
+            enabled = viewState.buttonsEnabled,
             onPasswordTextChanged = onPasswordChanged,
             errorMessage = (viewState as? LogInViewState.Active)?.passwordInputErrorMessage?.getString(
                 LocalContext.current
@@ -128,7 +142,7 @@ private fun LogoInputColum(
                     tint = MaterialTheme.colors.secondary
                 )
             },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation('*')
         )
         if (viewState is LogInViewState.SubmissionError) {
             Text(
@@ -150,19 +164,43 @@ private fun LogoInputColum(
 
 @Composable
 private fun Password(
+    keyboardOption: KeyboardOptions = KeyboardOptions(
+        keyboardType = KeyboardType.Password
+
+    ),
+    enabled: Boolean,
     text: String,
     onPasswordTextChanged: (String) -> Unit,
     errorMessage: String?,
     leadingIcon: (@Composable () -> Unit)? = null,
     visualTransformation: VisualTransformation
 ) {
+    var passwordvisibility by remember { mutableStateOf(false) }
+    val passwordIcon = if (passwordvisibility) design_ic_visibility else design_ic_visibility_off
+
     TrackAppTextField(
+        KeyboardOption = keyboardOption,
         text = text,
         onTextChanged = onPasswordTextChanged,
         labelText = stringResource(id = R.string.Password),
         errorMessage = errorMessage,
         leadingIcon = leadingIcon,
-        visualTransformation = visualTransformation
+        enabled = enabled,
+        visualTransformation = if(passwordvisibility) VisualTransformation.None else PasswordVisualTransformation('*'),
+        trailingIcon = {
+            IconButton(onClick = { passwordvisibility = !passwordvisibility }) {
+                Icon(
+                    painter = painterResource(
+                        id = passwordIcon
+                    ),
+                    contentDescription = stringResource(id = R.string.passwordVisibility),
+                    tint = MaterialTheme.colors.secondary
+                )
+//
+            }
+
+//
+        }
     )
 }
 
@@ -187,9 +225,11 @@ private fun Email(
     text: String,
     onEmailTextChanged: (String) -> Unit,
     errorMessage: String?,
+    enabled: Boolean,
     leadingIcon: (@Composable () -> Unit)? = null
 ) {
     TrackAppTextField(
+        enabled = enabled,
         text = text,
         onTextChanged = onEmailTextChanged,
         labelText = stringResource(id = R.string.Email),
