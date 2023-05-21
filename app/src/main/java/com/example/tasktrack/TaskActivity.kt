@@ -49,6 +49,9 @@ class TaskActivity : ComponentActivity() {
                 else -> true
             }
 
+
+
+
             TaskTrackTheme {
                 // A surface container using the 'background' color from the theme
                 Scaffold(
