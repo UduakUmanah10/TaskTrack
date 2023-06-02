@@ -14,7 +14,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
@@ -35,12 +34,17 @@ fun TrackAppTextField(
     labelText: String,
     errorMessage: String? = null,
     leadingIcon: (@Composable () -> Unit)? = null,
-    visualTransformation: VisualTransformation = VisualTransformation.None
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    enabled: Boolean = true,
+    KeyboardOption: KeyboardOptions = KeyboardOptions.Default,
+    trailingIcon: (@Composable () -> Unit)? = null
 
 ) {
     Column {
         OutlinedTextField(
-            singleLine = true,
+            trailingIcon = trailingIcon,
+            keyboardOptions = KeyboardOption,
+           singleLine = true,
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = MaterialTheme.colors.secondary,
                 unfocusedBorderColor = MaterialTheme.colors.secondary,
@@ -49,7 +53,7 @@ fun TrackAppTextField(
                 unfocusedLabelColor = MaterialTheme.colors.secondary,
                 cursorColor = MaterialTheme.colors.secondary
             ),
-            value = text ,//.toUpperCase(Locale.current),
+            value = text, // .toUpperCase(Locale.current),
             onValueChange = onTextChanged,
             label = { Text(text = labelText.toUpperCase(Locale.current)) },
             modifier = modifier
@@ -59,7 +63,7 @@ fun TrackAppTextField(
             isError = (errorMessage != null),
             leadingIcon = leadingIcon,
             visualTransformation = visualTransformation,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            enabled = enabled
 
         )
 
