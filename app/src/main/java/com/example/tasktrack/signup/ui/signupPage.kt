@@ -23,7 +23,6 @@ fun signUpPage(){
         .fillMaxSize()
         .background(Color.White)
         .padding(dimensionResource(id = R.dimen.surface_padding)),
-        Text(text = "")
     ){
         Column {
             NormalTextField(textValue = stringResource(id = R.string.Helo))
