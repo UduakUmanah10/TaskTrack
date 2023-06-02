@@ -6,10 +6,5 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/background</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
-        <item name="windowSplashScreenAnimationDuration">600</item>
-        <item name="postSplashScreenTheme">@style/Theme.TaskTrack</item>
-    </style>
+
 </resources>
