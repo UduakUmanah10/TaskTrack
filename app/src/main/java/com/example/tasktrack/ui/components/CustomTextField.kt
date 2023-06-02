@@ -42,7 +42,7 @@ fun TrackAppTextField(
         OutlinedTextField(
             singleLine = true,
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = MaterialTheme.colors.secondary,
+                focusedBorderColor = MaterialTheme.colors.error,
                 unfocusedBorderColor = MaterialTheme.colors.secondary,
                 textColor = MaterialTheme.colors.secondary,
                 focusedLabelColor = MaterialTheme.colors.secondary,

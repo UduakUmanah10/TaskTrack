@@ -9,4 +9,6 @@
     <string name="error_empty_password">Please Enter Password</string>
     <string name="error_empty_email">Please Enter Email</string>
     <string name="title_activity_task">TaskActivity</string>
+    <string name="Helo">Hello\n</string>
+    <string name="create_account">Create Account\n</string>
 </resources>
