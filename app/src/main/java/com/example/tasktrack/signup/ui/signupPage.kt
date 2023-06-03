@@ -16,17 +16,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.tasktrack.R
 import com.example.tasktrack.ui.components.BoldTExtField
 import com.example.tasktrack.ui.components.NormalTextField
+import com.example.tasktrack.ui.components.TrackAppTextField
 
 @Composable
 fun signUpPage(){
     Surface( modifier = Modifier
         .fillMaxSize()
-        .background(Color.White)
+        .background(Color.Blue)
         .padding(dimensionResource(id = R.dimen.surface_padding)),
     ){
-        Column {
+        Column(modifier = Modifier) {
             NormalTextField(textValue = stringResource(id = R.string.Helo))
             BoldTExtField(textValue = stringResource(id = R.string.create_account))
+            TrackAppTextField(text = "ssss", onTextChanged ={} , labelText ="" )
+
 
           }
     }

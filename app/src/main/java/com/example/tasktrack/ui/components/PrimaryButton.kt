@@ -1,5 +1,6 @@
 package com.example.tasktrack.ui.components
 
+import TaskTrackTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +18,6 @@ import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tasktrack.R
 import com.example.tasktrack.ui.theme.ButtonShape
-import com.example.tasktrack.ui.theme.TaskTrackTheme
 
 /**
  * This is a custom [Button] that  provides the shape and styling expected in the application
@@ -32,7 +32,7 @@ fun PrimaryButton(
     modifier: Modifier = Modifier,
     text: String,
     Onclick: () -> Unit,
-    backgroundColor: Color = MaterialTheme.colors.secondary,
+    backgroundColor: Color = androidx.compose.material3.MaterialTheme.colorScheme.background,
     textColor: Color = MaterialTheme.colors.background
 ) {
     val buttonColors = buttonColors(
