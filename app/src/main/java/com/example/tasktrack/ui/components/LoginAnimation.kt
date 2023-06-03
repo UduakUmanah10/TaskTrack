@@ -3,6 +3,7 @@ package com.example.tasktrack.ui.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -14,7 +15,7 @@ import com.example.tasktrack.R
 fun LoginAnimation() {
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.login2))
     val isPlaying by remember { mutableStateOf(false) }
-    val speed by remember { mutableStateOf(1f) }
+    val speed by remember { mutableFloatStateOf(1f) }
 
     val progress by animateLottieCompositionAsState(
         composition = composition,

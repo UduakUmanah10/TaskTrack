@@ -1,5 +1,6 @@
 package com.example.tasktrack.ui.components // ktlint-disable filename
 
+import TaskTrackTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tasktrack.R
 import com.example.tasktrack.ui.theme.OutlinedTextFieldShape
-import com.example.tasktrack.ui.theme.TaskTrackTheme
 
 /** this is a Custom text field implementation to ensure that it  implements
  * the track-app styling that we Expect. */

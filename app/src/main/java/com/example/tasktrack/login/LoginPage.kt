@@ -1,4 +1,5 @@
 package com.example.tasktrack.login
+import TaskTrackTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,7 +44,6 @@ import com.example.tasktrack.ui.components.TrackAppTextField
 import com.example.tasktrack.ui.components.UIText
 import com.example.tasktrack.ui.components.getString
 import com.example.tasktrack.ui.core.VerticalSpacer
-import com.example.tasktrack.ui.theme.TaskTrackTheme
 import com.google.android.material.R.drawable.design_ic_visibility
 import com.google.android.material.R.drawable.design_ic_visibility_off
 

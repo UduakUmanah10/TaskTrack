@@ -1,5 +1,6 @@
 package com.example.tasktrack
 
+import TaskTrackTheme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -34,7 +35,6 @@ import com.example.tasktrack.TaskActivityContent.homeScreen.ui.HomeScreen
 import com.example.tasktrack.TaskActivityContent.insights.ui.InsightsScreen
 import com.example.tasktrack.TaskActivityContent.settings.ui.SettingsScreen
 import com.example.tasktrack.TaskActivityContent.taskScreen.ui.TaskScreen
-import com.example.tasktrack.ui.theme.TaskTrackTheme
 
 class TaskActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -98,7 +98,7 @@ class TaskActivity : ComponentActivity() {
 
                                     onClick = { navController.navigate("SettingsScreen") },
                                     label = {
-                                        Text("Setting", fontFamily = FontFamily())
+                                        Text("Setting",)
                                     },
                                     icon = { Icon(painterResource(id = R.drawable.settings), contentDescription = "settings", Modifier.size(24.dp)) }
                                 )

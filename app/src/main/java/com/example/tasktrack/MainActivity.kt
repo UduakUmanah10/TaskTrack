@@ -1,12 +1,12 @@
 package com.example.tasktrack
 
+import TaskTrackTheme
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import com.example.tasktrack.ui.LoginScreen
-import com.example.tasktrack.ui.theme.TaskTrackTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
