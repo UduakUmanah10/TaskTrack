@@ -32,7 +32,7 @@ fun PrimaryButton(
     modifier: Modifier = Modifier,
     text: String,
     Onclick: () -> Unit,
-    backgroundColor: Color = androidx.compose.material3.MaterialTheme.colorScheme.background,
+    backgroundColor: Color = androidx.compose.material3.MaterialTheme.colorScheme.tertiary,
     textColor: Color = MaterialTheme.colors.background
 ) {
     val buttonColors = buttonColors(
