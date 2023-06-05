@@ -1,12 +1,14 @@
 package com.example.tasktrack.login
 import TaskTrackTheme
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
@@ -38,8 +40,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import com.example.tasktrack.R
 import com.example.tasktrack.login.domain.Credentials
-import com.example.tasktrack.ui.components.LoginAnimation
 import com.example.tasktrack.ui.components.PrimaryButton
+import com.example.tasktrack.ui.components.SignupAnnotatedString
 import com.example.tasktrack.ui.components.TrackAppTextField
 import com.example.tasktrack.ui.components.UIText
 import com.example.tasktrack.ui.components.getString
@@ -58,11 +60,13 @@ import com.google.android.material.R.drawable.design_ic_visibility_off
 
 @Composable
 fun LoginPage(
+
     viewState: LogInViewState,
     onUserNameChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
     onLoginClicked: () -> Unit,
-    onSignupClicked: () -> Unit
+    onSignupClicked: () -> Unit,
+    modifier: Modifier = Modifier
 
 ) {
     Surface(
@@ -96,8 +100,15 @@ private fun LogoInputColum(
 
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.weight(1F))
-        LoginAnimation()
+        Spacer(modifier = Modifier.weight(0.5F))
+        
+        Image(
+            painter = painterResource(id = R.drawable.login),
+            contentDescription = "",
+            modifier = Modifier.size(300.dp)
+        )
+
+        //LoginAnimation()
         Spacer(modifier = Modifier.weight(1F))
         if (viewState is LogInViewState.Submitting) {
             CircularProgressIndicator(
@@ -152,18 +163,20 @@ private fun LogoInputColum(
             )
         }
 
-        VerticalSpacer(height = 48.dp)
+        VerticalSpacer(height = 12.dp)
 
         LoginButton(onClick = onLoginClicked)
 
         VerticalSpacer(height = 12.dp)
 
-        SignUpButton(onSignupClicked = onSignupClicked)
+        SignupAnnotatedString(action={})
+
+        //SignUpButton(onSignupClicked = onSignupClicked)
     }
 }
 
 @Composable
-private fun Password(
+ fun Password(
     keyboardOption: KeyboardOptions = KeyboardOptions(
         keyboardType = KeyboardType.Password
 
@@ -205,15 +218,16 @@ private fun Password(
 }
 
 @Composable
-private fun SignUpButton(onSignupClicked: () -> Unit) {
+ fun SignUpButton(onSignupClicked: () -> Unit) {
     PrimaryButton(
+        modifier = Modifier.navigationBarsPadding(),
         text = stringResource(id = R.string.sign_up),
         Onclick = onSignupClicked
     )
 }
 
 @Composable
-private fun LoginButton(onClick: () -> Unit) {
+fun LoginButton(onClick: () -> Unit) {
     PrimaryButton(
         text = stringResource(id = R.string.Log_in),
         Onclick = onClick
@@ -221,7 +235,7 @@ private fun LoginButton(onClick: () -> Unit) {
 }
 
 @Composable
-private fun Email(
+ fun Email(
     text: String,
     onEmailTextChanged: (String) -> Unit,
     errorMessage: String?,

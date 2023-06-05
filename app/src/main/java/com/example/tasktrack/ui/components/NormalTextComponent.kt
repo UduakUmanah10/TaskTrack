@@ -2,6 +2,7 @@ package com.example.tasktrack.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,7 +30,8 @@ fun NormalTextField(textValue:String) {
             fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Normal
         ),
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.colorScheme.tertiary
     )
 }
 @Composable
